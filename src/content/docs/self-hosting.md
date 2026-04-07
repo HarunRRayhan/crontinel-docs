@@ -3,11 +3,9 @@ title: Self-Hosting
 description: Run the Crontinel SaaS stack on your own server
 ---
 
-import { Aside } from '@astrojs/starlight/components';
-
-<Aside type="note">
+:::note
 Self-hosting requires you to manage upgrades, backups, and queue workers yourself. If that's not what you want, [app.crontinel.com](https://app.crontinel.com) handles all of this for you.
-</Aside>
+:::
 
 ## Requirements
 

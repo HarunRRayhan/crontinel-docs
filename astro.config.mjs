@@ -6,7 +6,6 @@ export default defineConfig({
     starlight({
       title: 'Crontinel Docs',
       description: 'Documentation for Crontinel — background job and cron monitoring',
-      logo: { text: 'Crontinel' },
       social: {
         github: 'https://github.com/HarunRRayhan/crontinel',
       },

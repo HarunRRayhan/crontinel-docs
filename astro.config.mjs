@@ -6,12 +6,11 @@ export default defineConfig({
     starlight({
       title: 'Crontinel Docs',
       description: 'Documentation for Crontinel — background job and cron monitoring',
-      logo: { text: 'Crontinel' },
       social: {
         github: 'https://github.com/HarunRRayhan/crontinel',
       },
       editLink: {
-        baseUrl: 'https://github.com/HarunRRayhan/crontinel/edit/main/docs/',
+        baseUrl: 'https://github.com/HarunRRayhan/crontinel-docs/edit/main/src/content/docs/',
       },
       customCss: ['./src/styles/custom.css'],
       sidebar: [
@@ -37,6 +36,8 @@ export default defineConfig({
         { label: 'Reference', items: [
           { label: 'Configuration', link: '/reference/configuration/' },
           { label: 'REST API', link: '/reference/api/' },
+          { label: 'Self-Hosting', link: '/self-hosting/' },
+          { label: 'Troubleshooting', link: '/troubleshooting/' },
         ]},
       ],
     }),

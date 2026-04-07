@@ -63,11 +63,53 @@ Full health snapshot for an app.
 
 ### GET /apps/{slug}/cron-runs
 
-Last 50 cron runs.
+Last 50 cron runs, newest first.
+
+**Response:**
+```json
+{
+  "data": [
+    {
+      "command": "php artisan inspire",
+      "status": "completed",
+      "exit_code": 0,
+      "duration_ms": 145,
+      "started_at": "2026-04-07T08:00:02Z"
+    }
+  ]
+}
+```
+
+| Field | Type | Notes |
+|---|---|---|
+| `command` | string | The artisan or shell command |
+| `status` | string | `completed`, `failed`, `running`, or `late` |
+| `exit_code` | int \| null | Process exit code (null if still running) |
+| `duration_ms` | int \| null | Execution time in milliseconds |
+| `started_at` | string | ISO 8601 timestamp |
 
 ### GET /apps/{slug}/alerts
 
-Active (unresolved) alerts.
+Active (unresolved) alerts for the app.
+
+**Response:**
+```json
+{
+  "data": [
+    {
+      "alert_key": "queue:default:depth",
+      "fired_at": "2026-04-07T07:55:00Z",
+      "fire_count": 3
+    }
+  ]
+}
+```
+
+| Field | Type | Notes |
+|---|---|---|
+| `alert_key` | string | Unique key like `horizon:paused`, `queue:default:depth`, `cron:send-invoices:failed` |
+| `fired_at` | string | When the alert first fired |
+| `fire_count` | int | How many times the condition was re-evaluated as firing |
 
 ## OpenAPI spec
 

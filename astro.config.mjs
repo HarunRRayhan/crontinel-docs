@@ -7,10 +7,10 @@ export default defineConfig({
       title: 'Crontinel Docs',
       description: 'Documentation for Crontinel — background job and cron monitoring',
       social: {
-        github: 'https://github.com/HarunRRayhan/crontinel',
+        github: 'https://github.com/crontinel/crontinel',
       },
       editLink: {
-        baseUrl: 'https://github.com/HarunRRayhan/crontinel-docs/edit/main/src/content/docs/',
+        baseUrl: 'https://github.com/crontinel/docs/edit/main/src/content/docs/',
       },
       customCss: ['./src/styles/custom.css'],
       sidebar: [

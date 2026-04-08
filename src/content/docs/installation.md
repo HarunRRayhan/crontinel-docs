@@ -11,10 +11,12 @@ description: Full installation and configuration guide
 ## Install
 
 ```bash
-composer require harunrrayhan/crontinel
+composer require crontinel/laravel
 php artisan crontinel:install
 php artisan migrate
 ```
+
+After running the installer, `config/crontinel.php` is published to your project. Review it to set the dashboard path, middleware, and alert thresholds.
 
 ## Dashboard path
 
@@ -43,4 +45,16 @@ Exits 0 if healthy, 1 if any alert is active. Use in CI pipelines:
 
 ```bash
 php artisan crontinel:check --format=json
+```
+
+## Environment variables
+
+Commonly used `.env` variables:
+
+```env
+CRONTINEL_PATH=crontinel
+CRONTINEL_ALERT_CHANNEL=slack
+CRONTINEL_SLACK_WEBHOOK=https://hooks.slack.com/services/YOUR/WEBHOOK/URL
+# Or for email alerts:
+CRONTINEL_ALERT_EMAIL=you@example.com
 ```

@@ -6,7 +6,7 @@ description: Get Crontinel running in under 5 minutes
 ## 1. Install the package
 
 ```bash
-composer require harunrrayhan/crontinel
+composer require crontinel/laravel
 ```
 
 ## 2. Run the installer
@@ -15,17 +15,28 @@ composer require harunrrayhan/crontinel
 php artisan crontinel:install
 ```
 
-This publishes `config/crontinel.php` and creates the `crontinel_runs` migration.
+This publishes `config/crontinel.php` and runs the required database migrations.
 
-## 3. Run migrations
-
-```bash
-php artisan migrate
-```
-
-## 4. Open the dashboard
+## 3. Open the dashboard
 
 Visit `/crontinel` in your browser. You'll see the monitoring dashboard.
+
+> **What you should see:** The Horizon and Queue sections populate immediately. The Cron section will be empty until your scheduler has run at least once — this is normal. After the first scheduler tick (or after running `schedule:work` locally), your registered commands will appear.
+
+## 4. Run your scheduler
+
+Crontinel reads data from Laravel's scheduler. For the cron section to populate, your scheduler must be running:
+
+```bash
+# On your server: add this to crontab (crontab -e)
+* * * * * cd /path-to-your-project && php artisan schedule:run >> /dev/null 2>&1
+```
+
+For local development, use the scheduler worker instead:
+
+```bash
+php artisan schedule:work
+```
 
 ## 5. (Optional) Configure alerts
 
@@ -35,6 +46,8 @@ In `.env`:
 CRONTINEL_ALERT_CHANNEL=slack
 CRONTINEL_SLACK_WEBHOOK=https://hooks.slack.com/services/...
 ```
+
+> **Not using Horizon?** Set `'horizon' => ['enabled' => false]` in `config/crontinel.php` to hide the Horizon panel.
 
 ## 6. (Optional) Connect to the SaaS
 

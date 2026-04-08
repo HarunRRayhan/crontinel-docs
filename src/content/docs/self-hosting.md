@@ -47,7 +47,7 @@ DB_PASSWORD=
 
 REDIS_HOST=127.0.0.1
 
-MAIL_MAILER=smtp          # or resend — set RESEND_API_KEY instead
+MAIL_MAILER=smtp
 MAIL_FROM_ADDRESS=alerts@your-domain.com
 ```
 
@@ -66,12 +66,27 @@ chmod -R 775 storage bootstrap/cache
 
 ## 5. Web server
 
+Caddy is the simplest option here. It provisions TLS certificates automatically via Let's Encrypt with zero config. If you prefer Nginx, you'll need to manage certificates yourself (see below).
+
+### Caddy
+
+```
+your-domain.com {
+    root * /var/www/crontinel/public
+    php_fastcgi unix//var/run/php/php8.2-fpm.sock
+    file_server
+}
+```
+
 ### Nginx
 
 ```nginx
 server {
     listen 443 ssl;
     server_name your-domain.com;
+
+    ssl_certificate     /etc/ssl/certs/your-domain.com.pem;
+    ssl_certificate_key /etc/ssl/private/your-domain.com.key;
 
     root /var/www/crontinel/public;
     index index.php;
@@ -88,15 +103,7 @@ server {
 }
 ```
 
-### Caddy
-
-```
-your-domain.com {
-    root * /var/www/crontinel/public
-    php_fastcgi unix//var/run/php/php8.2-fpm.sock
-    file_server
-}
-```
+Replace the `ssl_certificate` and `ssl_certificate_key` paths with your actual cert and key. If you use Certbot, the paths are typically `/etc/letsencrypt/live/your-domain.com/fullchain.pem` and `privkey.pem`.
 
 ## 6. Queue workers
 
@@ -106,7 +113,7 @@ Create a Supervisor config at `/etc/supervisor/conf.d/crontinel.conf`:
 
 ```ini
 [program:crontinel-worker]
-command=php /var/www/crontinel/artisan queue:work redis --sleep=3 --tries=3 --max-time=3600
+command=php /var/www/crontinel/artisan queue:work redis --queue=crontinel,default --sleep=3 --tries=3 --max-time=3600
 directory=/var/www/crontinel
 user=www-data
 numprocs=2
@@ -116,6 +123,8 @@ stopasgroup=true
 killasgroup=true
 stdout_logfile=/var/log/crontinel/worker.log
 ```
+
+The `--queue=crontinel,default` flag is important. Without it, workers only process the `default` queue and won't pick up alert evaluation or ping processing jobs that Crontinel dispatches to the `crontinel` queue. The order matters: `crontinel` is listed first so those jobs get priority.
 
 Then:
 
@@ -140,7 +149,7 @@ php artisan queue:monitor redis:default
 php artisan horizon:status
 ```
 
-Check `/health` returns `200` — that endpoint is always unauthenticated.
+Check `/health` returns `200` -- that endpoint is always unauthenticated.
 
 ## Upgrades
 

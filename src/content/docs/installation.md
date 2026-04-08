@@ -11,7 +11,7 @@ description: Full installation and configuration guide
 ## Install
 
 ```bash
-composer require harunrrayhan/crontinel
+composer require crontinel/laravel
 php artisan crontinel:install
 php artisan migrate
 ```

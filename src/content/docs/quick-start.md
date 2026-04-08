@@ -6,7 +6,7 @@ description: Get Crontinel running in under 5 minutes
 ## 1. Install the package
 
 ```bash
-composer require harunrrayhan/crontinel
+composer require crontinel/laravel
 ```
 
 ## 2. Run the installer

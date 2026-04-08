@@ -16,7 +16,7 @@ php artisan crontinel:install
 php artisan migrate
 ```
 
-After running the installer, `config/crontinel.php` is published to your project. Review it to set the dashboard path, middleware, and alert thresholds.
+After running the installer, `config/crontinel.php` is published to your project. Review it to set the dashboard path, middleware, and alert thresholds. See the [configuration reference](/reference/configuration) for all available options.
 
 ## Dashboard path
 
@@ -49,12 +49,20 @@ php artisan crontinel:check --format=json
 
 ## Environment variables
 
-Commonly used `.env` variables:
+All Crontinel `.env` variables:
 
 ```env
+# Dashboard
 CRONTINEL_PATH=crontinel
-CRONTINEL_ALERT_CHANNEL=slack
-CRONTINEL_SLACK_WEBHOOK=https://hooks.slack.com/services/YOUR/WEBHOOK/URL
-# Or for email alerts:
-CRONTINEL_ALERT_EMAIL=you@example.com
+
+# Alerts — set CRONTINEL_ALERT_CHANNEL to one of: slack, mail, pagerduty, webhook
+CRONTINEL_ALERT_CHANNEL=
+CRONTINEL_SLACK_WEBHOOK=
+CRONTINEL_ALERT_EMAIL=
+CRONTINEL_PAGERDUTY_ROUTING_KEY=
+CRONTINEL_WEBHOOK_URL=
+
+# SaaS (optional)
+CRONTINEL_API_KEY=
+CRONTINEL_API_URL=https://app.crontinel.com
 ```

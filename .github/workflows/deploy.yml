@@ -28,7 +28,7 @@ jobs:
 
       - name: Deploy to Cloudflare Pages
         run: |
-          npx wrangler@3.90.0 pages deploy dist --project-name=crontinel-docs --yes
+          npx wrangler@3.90.0 pages deploy dist --project-name=crontinel-docs
         env:
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           CLOUDFLARE_API_KEY: ${{ secrets.CF_API_KEY }}

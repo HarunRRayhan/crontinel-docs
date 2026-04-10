@@ -31,4 +31,5 @@ jobs:
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          version: "3.90.0"
           command: pages deploy dist --project-name=crontinel-docs --branch=${{ github.ref_name }}

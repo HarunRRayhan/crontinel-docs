@@ -64,7 +64,7 @@ CRONTINEL_WEBHOOK_URL=  # Required environment variable
 
 # SaaS (optional)
 CRONTINEL_API_KEY=  # Required environment variable
-CRONTINEL_API_URL=https://app.crontinel.com
+CRONTINEL_API_URL=https://app.crontinel.com  # Required environment variable
 ```
 
 ## Upgrading

@@ -36,7 +36,7 @@ In your `.env`:
 ```env
 CRONTINEL_ALERT_CHANNEL=email  # Required environment variable
 CRONTINEL_ALERT_EMAIL=you@example.com  # Required environment variable
-CRONTINEL_FROM_EMAIL=crontinel@yourdomain.com
+CRONTINEL_FROM_EMAIL=crontinel@yourdomain.com  # Required environment variable
 ```
 
 Add an email channel with config key `to` set to the recipient address. Crontinel sends via Resend — no SMTP setup required on your end.

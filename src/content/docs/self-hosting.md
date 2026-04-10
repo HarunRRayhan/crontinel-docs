@@ -7,6 +7,8 @@ description: Run the Crontinel SaaS stack on your own server
 Self-hosting requires you to manage upgrades, backups, and queue workers yourself. If that's not what you want, [app.crontinel.com](https://app.crontinel.com) handles all of this for you.
 :::
 
+Self-hosted Crontinel works fully standalone. You do not need a crontinel.com account or API key. The dashboard, alerts, and all monitoring features run entirely on your server.
+
 ## Requirements
 
 | Component | Minimum version |
@@ -49,6 +51,10 @@ REDIS_HOST=127.0.0.1
 
 MAIL_MAILER=smtp
 MAIL_FROM_ADDRESS=alerts@your-domain.com
+
+# Alert channels (Slack, email, and webhook all work in self-hosted mode)
+CRONTINEL_ALERT_CHANNEL=slack
+CRONTINEL_SLACK_WEBHOOK=https://hooks.slack.com/services/YOUR/WEBHOOK/URL
 ```
 
 ## 3. Database
@@ -150,6 +156,10 @@ php artisan horizon:status
 ```
 
 Check `/health` returns `200` -- that endpoint is always unauthenticated.
+
+## Access the dashboard
+
+After install, visit `/crontinel` on your domain to open the monitoring dashboard. The dashboard shows Horizon status, queue throughput, and cron job data once the scheduler and queue workers are running.
 
 ## Upgrades
 

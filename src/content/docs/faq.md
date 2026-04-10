@@ -1,7 +1,19 @@
 ---
-title: FAQ
-description: "Common questions about Crontinel: installation, plans, data privacy, supported versions, and more."
+title: Frequently Asked Questions
+description: Common questions about Crontinel, pricing, self-hosting, and getting started.
 ---
+
+## What exactly does Crontinel monitor?
+
+Crontinel tracks three things in your Laravel app: scheduled tasks (cron jobs), queues, and Horizon. You get visibility into whether jobs ran on time, how long they took, whether they failed, and what your queue backlog looks like. It is not just a "did my server respond" ping. It actually understands your Laravel internals.
+
+## How is this different from Healthchecks.io or Cronitor?
+
+Healthchecks.io is a dead man's switch. It knows a ping didn't arrive, but it has no idea why your job failed or what your queue depth looks like. Cronitor works but it is expensive and treats Laravel like any other language, so you end up writing boilerplate to get useful data out. Crontinel is a first-class Laravel package that hooks directly into the scheduler, queue system, and Horizon with zero configuration beyond a service provider.
+
+## How do I get started?
+
+Install the package with `composer require crontinel/laravel`, publish the config, and set your API key. The whole setup takes under two minutes. A self-hosted dashboard is included out of the box, so you can start seeing data immediately without sending anything to an external service. See the [quick start guide](/quick-start/) for a full walkthrough.
 
 ## What does the free plan include?
 
@@ -10,6 +22,10 @@ The free plan gives you the local dashboard at `/crontinel` with full cron, queu
 ## What does Pro add?
 
 Pro removes the job limit and extends history retention on the SaaS. You also get Slack, email, PagerDuty, and webhook alert channels through the hosted dashboard, team member access, and per-app threshold overrides. The OSS package itself doesn't change between plans. Pro is about the hosted features on top of what the package already does locally.
+
+## What does pricing look like for a small team?
+
+Pro is $19/month for up to five apps with unlimited monitors and 90 days of history. Team is $49/month for unlimited everything. Annual billing saves you 20%. There are also lifetime deals available if you prefer a one-time payment. The free tier works fine if you just need basic monitoring for a single app. Check the [pricing page](https://crontinel.com/pricing) for current details.
 
 ## Can I use Crontinel without the SaaS?
 
@@ -63,6 +79,10 @@ A ping fires after every scheduled command execution. There's no separate pollin
 No. Crontinel deduplicates alerts with a 5-minute cooldown window. If a queue stays above its depth threshold all morning, you get one Slack message when it first fires, then silence until the cooldown expires. The alert fires again if the condition is still active after 5 minutes. Clear signal, no noise.
 
 When the condition clears, Crontinel sends a resolved notification. So you'll see a "firing" message and then a "resolved" message for each incident, not a stream of repeated fires.
+
+## Does it work with frameworks other than Laravel?
+
+There is a framework-agnostic PHP package (`crontinel/php`) for vanilla PHP or other frameworks, but the richest experience is with Laravel 11, 12, and 13. If you are running something outside the PHP ecosystem, Crontinel is not the right tool for you today. PHP 8.2 or higher is required.
 
 ## Which versions of Laravel are supported?
 

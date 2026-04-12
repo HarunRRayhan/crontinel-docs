@@ -52,7 +52,7 @@ CRONTINEL_SLACK_WEBHOOK=https://hooks.slack.com/services/...  # Required environ
 ## 6. (Optional) Connect to the SaaS
 
 :::note
-The Crontinel SaaS (app.crontinel.com) is currently in early access. [Join the waitlist](https://crontinel.com/#waitlist) to get notified when it launches.
+The Crontinel SaaS is now in early access. [Create a free account](https://crontinel.com/register) to get started.
 :::
 
 Once you have access, create a free account, create an app, and add your API key:

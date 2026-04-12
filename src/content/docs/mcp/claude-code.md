@@ -4,7 +4,7 @@ description: Connecting Crontinel to Claude Code via MCP
 ---
 
 :::note
-The Crontinel SaaS is currently in early access. [Join the waitlist](https://crontinel.com/#waitlist) to get notified at launch.
+The Crontinel SaaS is now in early access. [Create a free account](https://crontinel.com/register) to get started.
 :::
 
 ## 1. Get your API key

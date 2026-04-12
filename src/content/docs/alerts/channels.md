@@ -11,6 +11,9 @@ description: Configuring Slack, email, PagerDuty, and webhook alerts
 | Email | `to` | Recipient email address |
 | PagerDuty | `routing_key` | Events API v2 routing key |
 | Webhook | `url` | Any HTTPS endpoint |
+| SMS | — | Coming soon |
+| OpsGenie | — | Future roadmap |
+| VictorOps | — | Future roadmap |
 
 ## Configuration
 
@@ -89,3 +92,11 @@ When a condition clears, Crontinel sends a "resolved" notification. You get clea
 ## SaaS alert management
 
 In the [Crontinel SaaS](https://app.crontinel.com) you can configure per-app alert channels through the web UI without touching config files.
+
+## Future alert channels
+
+The following channels are on the roadmap but not yet available:
+
+- **SMS** — Direct text message alerts. Sign up for early access at [crontinel.com](/) when this launches.
+- **OpsGenie** — IT alert routing and on-call management. Planned for a future release.
+- **VictorOps** — Incident management and PagerDuty alternative. Planned for a future release.

@@ -9,7 +9,7 @@ description: Configuring Slack, email, PagerDuty, and webhook alerts
 |---|---|---|
 | Slack | `webhook_url` | Incoming webhook URL |
 | Email | `to` | Recipient email address |
-| PagerDuty | `routing_key` | Events API v2 routing key |
+| PagerDuty | `routing_key` | Events API v2 routing key (coming soon) |
 | Webhook | `url` | Any HTTPS endpoint |
 | SMS | — | Coming soon |
 | OpsGenie | — | Future roadmap |
@@ -43,21 +43,9 @@ CRONTINEL_ALERT_EMAIL=you@example.com  # Required environment variable
 
 Add an email channel with config key `to` set to the recipient address. Crontinel sends via Resend  –  no SMTP setup required on your end.
 
-### PagerDuty
+### PagerDuty (coming soon)
 
-**OSS: configure via environment variables**
-
-In your `.env`:
-```env
-CRONTINEL_ALERT_CHANNEL=pagerduty  # Required environment variable
-CRONTINEL_PAGERDUTY_ROUTING_KEY=your-integration-key-here  # Required environment variable
-```
-
-1. In PagerDuty, create a service with the **Events API v2** integration.
-2. Copy the **Integration Key** (routing key).
-3. Add a PagerDuty channel with the integration key as the `routing_key`.
-
-> **Note:** PagerDuty is available on Pro and Team plans.
+> **Note:** PagerDuty integration is planned and will be available in a future release.
 
 ### Webhook
 
@@ -97,6 +85,7 @@ In the [Crontinel SaaS](https://app.crontinel.com) you can configure per-app ale
 
 The following channels are on the roadmap but not yet available:
 
+- **PagerDuty** — IT alert routing and incident management. Planned for a future release.
 - **SMS** — Direct text message alerts. Sign up for early access at [crontinel.com](/) when this launches.
 - **OpsGenie** — IT alert routing and on-call management. Planned for a future release.
 - **VictorOps** — Incident management and PagerDuty alternative. Planned for a future release.

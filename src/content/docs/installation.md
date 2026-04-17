@@ -5,7 +5,7 @@ description: Full installation and configuration guide
 
 ## Requirements
 
-- PHP 8.2, 8.3, or 8.4
+- PHP 8.2, 8.3, 8.4, or 8.5
 - Laravel 11, 12, or 13
 
 ## Install

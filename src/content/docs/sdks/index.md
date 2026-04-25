@@ -44,6 +44,10 @@ Crontinel has official monitoring packages for every major runtime. Pick the one
     CLI / Docker — Wrap any cron, Docker job, K8s CronJob
     [Installation →](/sdks/cli/)
   </Card>
+  <Card title="Crontinel.NET" icon="seti:csharp">
+    .NET / C# — Hangfire, Quartz.NET, TaskScheduler, Worker Service
+    [Installation →](/sdks/dotnet/)
+  </Card>
 </CardGrid>
 
 ## How it works

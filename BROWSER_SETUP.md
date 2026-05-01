@@ -50,7 +50,7 @@ nohup "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" \
 ### Key Differences
 
 - **Default** and **openclaw** share state (copies of same base Chrome)
-- **crontinel**, **toolblip**, and **amazing** are completely isolated clean profiles
+- **crontinel** and **amazing** are completely isolated clean profiles
 - Sessions are NOT shared between profiles — each starts fresh
 
 ---

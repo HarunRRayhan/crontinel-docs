@@ -9,6 +9,8 @@ Self-hosting requires you to manage upgrades, backups, and queue workers yoursel
 
 Self-hosted Crontinel works fully standalone. You do not need a crontinel.com account or API key. The dashboard, alerts, and all monitoring features run entirely on your server.
 
+The fastest path to self-hosting is our Docker Compose setup. See [`docker-compose.yml`](https://github.com/crontinel/docs/blob/main/docker-compose.yml) for a production-ready stack with app, PostgreSQL, Redis, queue worker, and scheduler.
+
 > **Note:** The self-hosted app (`crontinel/app`) is available to Pro and Team plan subscribers. [See pricing](https://crontinel.com/pricing) for plan details.
 
 ## Requirements

@@ -17,18 +17,12 @@ php artisan crontinel:install
 
 This publishes `config/crontinel.php` and runs the required database migrations.
 
-## 3. Open the dashboard
+## 3. Start the scheduler
 
-Visit `/crontinel` in your browser. You'll see the monitoring dashboard.
-
-> **What you should see:** The Horizon and Queue sections populate immediately. The Cron section will be empty until your scheduler has run at least once  –  this is normal. After the first scheduler tick (or after running `schedule:work` locally), your registered commands will appear.
-
-## 4. Run your scheduler
-
-Crontinel reads data from Laravel's scheduler. For the cron section to populate, your scheduler must be running:
+Crontinel reads data from Laravel's scheduler. Add the scheduler cron entry to your server before opening the dashboard so data is ready when you first visit:
 
 ```bash
-# On your server: add this to crontab (crontab -e)
+# Add to crontab (crontab -e) on your server
 * * * * * cd /path-to-your-project && php artisan schedule:run >> /dev/null 2>&1
 ```
 
@@ -37,6 +31,12 @@ For local development, use the scheduler worker instead:
 ```bash
 php artisan schedule:work
 ```
+
+## 4. Open the dashboard
+
+Visit `/crontinel` in your browser. You'll see the monitoring dashboard.
+
+> **What you should see:** The Horizon and Queue sections populate immediately. The Cron section will be empty until your scheduler has run at least once — this is normal. After the first scheduler tick (or after running `schedule:work` locally), your registered commands will appear.
 
 ## 5. (Optional) Configure alerts
 

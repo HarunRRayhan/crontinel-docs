@@ -5,6 +5,70 @@ description: Complete reference for all Crontinel configuration options, environ
 
 This page documents every configuration option available in Crontinel. Options are set in `config/crontinel.php` (published via `php artisan crontinel:install`). Some — particularly database, Redis, and mail — are standard Laravel `.env` vars.
 
+## Complete config file
+
+After `php artisan crontinel:install`, `config/crontinel.php` is published with all defaults. Copy-paste this as your starting point:
+
+```php
+<?php
+
+declare(strict_types=1);
+use Laravel\Horizon\Horizon;
+
+return [
+
+    'path' => env('CRONTINEL_PATH', 'crontinel'),
+
+    'middleware' => ['web', 'auth'],
+
+    'saas_key' => env('CRONTINEL_API_KEY'),
+    'saas_url' => env('CRONTINEL_API_URL', 'https://app.crontinel.com'),
+
+    'horizon' => [
+        'enabled'                          => env('CRONTINEL_HORIZON', class_exists(Horizon::class)),
+        'supervisor_alert_after_seconds'   => 60,
+        'failed_jobs_per_minute_threshold' => 5,
+        'connection'                       => env('CRONTINEL_HORIZON_CONNECTION', 'horizon'),
+    ],
+
+    'queues' => [
+        'enabled'                 => true,
+        'watch'                   => [],   // empty = auto-discover all queues
+        'depth_alert_threshold'   => 1000,
+        'wait_time_alert_seconds' => 300,
+    ],
+
+    'cron' => [
+        'enabled'                  => true,
+        'late_alert_after_seconds' => 120,
+        'retain_days'              => 30,
+    ],
+
+    'alerts' => [
+        'channel' => env('CRONTINEL_ALERT_CHANNEL'),  // 'slack', 'mail', or 'webhook'
+
+        'mail' => [
+            'to' => env('CRONTINEL_ALERT_EMAIL'),
+        ],
+
+        'slack' => [
+            'webhook_url' => env('CRONTINEL_SLACK_WEBHOOK'),
+        ],
+
+        'webhook' => [
+            'url'     => env('CRONTINEL_WEBHOOK_URL'),
+            'headers' => env('CRONTINEL_WEBHOOK_HEADERS'),
+            'timeout' => env('CRONTINEL_WEBHOOK_TIMEOUT', 10),
+        ],
+    ],
+
+];
+```
+
+Run `php artisan config:clear` after changing the config file in production.
+
+---
+
 ## Environment variable quick reference
 
 | Variable | Config key | Default | Description |
